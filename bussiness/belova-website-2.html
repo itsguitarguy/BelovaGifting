@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Belova — Curated with Heart. Delivered with Warmth.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Marcellus&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --plum:#7A2F47;
+    --plum-deep:#5A2136;
+    --rose:#F0C9C4;
+    --gold:#C99A3E;
+    --gold-dark:#8A661F;
+    --gold-soft:#EAD3A0;
+    --ivory:#FBF3E7;
+    --ink:#3A2A22;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ivory);
+    color:var(--ink);
+    font-family:'Jost', sans-serif;
+    font-weight:400;
+    font-size:16.5px;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{
+    font-family:'Marcellus', serif;
+    font-weight:400;
+    letter-spacing:0.02em;
+  }
+  .accent{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-weight:500;
+  }
+  a{text-decoration:none;color:inherit;}
+
+  /* NAV */
+  nav{
+    position:fixed;top:0;left:0;right:0;
+    display:flex;align-items:center;justify-content:flex-end;
+    padding:22px 6vw;
+    z-index:100;
+    background:rgba(251,243,231,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(122,47,71,0.1);
+  }
+  .logo{
+    display: block;
+    text-align: center;
+    font-family: 'Marcellus', serif;
+    font-size: 1.7rem;
+    letter-spacing: 0.14em;
+    color: var(--plum);
+    margin-bottom: 20px;
+}
+  .nav-links{display:flex;gap:36px;font-size:0.92rem;letter-spacing:0.06em;text-transform:uppercase;font-weight:500;}
+  .nav-links a{position:relative;padding-bottom:4px;color:var(--ink);}
+  .nav-links a::after{
+    content:'';position:absolute;bottom:0;left:0;width:0;height:1px;
+    background:var(--gold-dark);transition:width 0.35s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+  @media(max-width:720px){.nav-links{display:none;}}
+
+  /* HERO */
+  .hero{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    position:relative;
+    padding:120px 6vw 80px;
+    background:
+      radial-gradient(ellipse at 50% -10%, rgba(199,150,46,0.14), transparent 55%),
+      var(--ivory);
+  }
+  .ribbon-wrap{
+    position:relative;
+    width:2px;
+    height:90px;
+    margin-bottom:28px;
+  }
+  .ribbon-wrap svg{
+    position:absolute;
+    top:0;left:50%;
+    transform:translateX(-50%);
+    animation: dropIn 1.1s cubic-bezier(.2,.8,.2,1) both;
+  }
+  @keyframes dropIn{
+    from{transform:translateX(-50%) translateY(-40px);opacity:0;}
+    to{transform:translateX(-50%) translateY(0);opacity:1;}
+  }
+  .eyebrow{
+    font-size:0.85rem;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    color:var(--gold-dark);
+    margin-bottom:18px;
+    font-weight:500;
+    opacity:0;
+    animation:riseIn 0.9s ease 0.3s forwards;
+  }
+  .hero h1{
+    font-size:clamp(2.8rem, 7vw, 5.5rem);
+    color:var(--plum);
+    line-height:1.05;
+    opacity:0;
+    animation:riseIn 0.9s ease 0.5s forwards;
+  }
+  .hero h1 em{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-weight:500;
+    color:var(--gold-dark);
+  }
+  .hero p.tagline{
+    margin-top:22px;
+    font-size:1.25rem;
+    color:var(--plum-deep);
+    letter-spacing:0.02em;
+    opacity:0;
+    animation:riseIn 0.9s ease 0.7s forwards;
+  }
+  @keyframes riseIn{
+    from{opacity:0;transform:translateY(18px);}
+    to{opacity:1;transform:translateY(0);}
+  }
+  .cta-row{
+    margin-top:44px;
+    display:flex;
+    gap:20px;
+    opacity:0;
+    animation:riseIn 0.9s ease 0.9s forwards;
+  }
+  .btn{
+    padding:14px 34px;
+    border-radius:2px;
+    font-size:0.9rem;
+    font-weight:500;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    border:1px solid var(--plum);
+    transition:all 0.3s ease;
+  }
+  .btn.primary{background:var(--plum);color:var(--ivory);}
+  .btn.primary:hover{background:var(--plum-deep);}
+  .btn.ghost{color:var(--plum);}
+  .btn.ghost:hover{background:var(--plum);color:var(--ivory);}
+
+  /* SEAL DIVIDER */
+  .seal-divider{
+    display:flex;align-items:center;justify-content:center;
+    gap:16px;
+    margin:0 auto;
+    padding:60px 0 10px;
+    color:var(--gold-dark);
+  }
+  .seal-divider .line{width:70px;height:1px;background:var(--gold-dark);opacity:0.6;}
+  .seal-divider .mark{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.35rem;color:var(--plum);}
+
+  section{padding:60px 6vw 100px;max-width:1180px;margin:0 auto;}
+
+  /* STORY */
+  .story{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:70px;
+    align-items:center;
+  }
+  .story .label{font-size:0.85rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:14px;display:block;font-weight:500;}
+  .story h2{font-size:2.3rem;color:var(--plum);margin-bottom:22px;}
+  .story p{line-height:1.85;color:var(--ink);opacity:0.95;font-size:1.12rem;}
+  .story-visual {
+    aspect-ratio: 4/5;
+    border: 1px solid rgba(76,29,46,0.18);
+    border-radius: 2px;
+    position: relative;
+    background: linear-gradient(160deg, rgba(199,150,46,0.10), rgba(76,29,46,0.06));
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.story-visual img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+  @media(max-width:860px){.story{grid-template-columns:1fr;}.story-visual{order:-1;max-width:280px;margin:0 auto;}}
+
+  /* OFFERINGS */
+  .offer-head{text-align:center;margin-bottom:60px;}
+  .offer-head .label{font-size:0.85rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold-dark);font-weight:500;}
+  .offer-head h2{font-size:2.4rem;color:var(--plum);margin-top:12px;}
+  .offer-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:1px;
+    background:rgba(122,47,71,0.16);
+    border:1px solid rgba(122,47,71,0.16);
+  }
+  .offer-card{
+    background:var(--ivory);
+    padding:44px 28px;
+    text-align:center;
+    transition:background 0.35s ease;
+  }
+  .offer-card:hover{background:#F5E4CF;}
+  .offer-card .num{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    color:var(--gold-dark);
+    font-size:1.05rem;
+    margin-bottom:16px;
+    display:block;
+  }
+  .offer-card h3{font-size:1.15rem;color:var(--plum);margin-bottom:12px;}
+  .offer-card p{font-size:1rem;line-height:1.7;opacity:0.9;}
+  @media(max-width:860px){.offer-grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:520px){.offer-grid{grid-template-columns:1fr;}}
+
+  /* GALLERY */
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:22px;
+  }
+  .gallery-item{
+    border-radius:4px;
+    overflow:hidden;
+    aspect-ratio:4/5;
+    border:1px solid rgba(122,47,71,0.15);
+    box-shadow:0 8px 24px rgba(122,47,71,0.1);
+  }
+  .gallery-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease;}
+  .gallery-item:hover img{transform:scale(1.05);}
+  @media(max-width:860px){.gallery-grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:520px){.gallery-grid{grid-template-columns:1fr;}}
+
+  /* PROMISE - ribbon strip */
+  .promise{
+    background:var(--plum);
+    color:var(--ivory);
+    padding:90px 6vw;
+    margin-top:20px;
+  }
+  .promise-inner{max-width:1180px;margin:0 auto;}
+  .promise .label{font-size:0.85rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold-soft);font-weight:500;}
+  .promise h2{font-size:2.3rem;margin-top:12px;margin-bottom:50px;color:var(--ivory);}
+  .promise-list{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:36px;
+  }
+  .promise-item .word{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-size:1.6rem;
+    color:var(--gold-soft);
+    margin-bottom:10px;
+    display:block;
+  }
+  .promise-item p{font-size:1.02rem;line-height:1.7;opacity:0.95;}
+  @media(max-width:860px){.promise-list{grid-template-columns:1fr 1fr;}}
+  @media(max-width:520px){.promise-list{grid-template-columns:1fr;}}
+
+  /* WHO WE SERVE */
+  .serve{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1px;
+    background:rgba(122,47,71,0.16);
+    border:1px solid rgba(122,47,71,0.16);
+    margin-top:20px;
+  }
+  .serve-card{background:var(--ivory);padding:56px 44px;}
+  .serve-card .label{font-size:0.85rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold-dark);font-weight:500;}
+  .serve-card h3{font-size:1.7rem;color:var(--plum);margin:14px 0 16px;}
+  .serve-card p{line-height:1.8;opacity:0.95;font-size:1.08rem;}
+  @media(max-width:720px){.serve{grid-template-columns:1fr;}}
+
+  /* CONTACT */
+  .contact{text-align:center;padding-top:100px;}
+  .contact .label{font-size:0.85rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold-dark);font-weight:500;}
+  .contact h2{font-size:2.6rem;color:var(--plum);margin:14px 0 20px;}
+  .contact p.sub{max-width:480px;margin:0 auto 44px;opacity:0.9;line-height:1.8;font-size:1.08rem;}
+  .contact-grid{
+    display:flex;justify-content:center;gap:60px;flex-wrap:wrap;
+    margin-bottom:50px;
+  }
+  .contact-item{text-align:left;}
+  .contact-item .k{font-size:0.8rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:6px;display:block;font-weight:500;}
+  .contact-item .v{font-size:1.12rem;color:var(--plum);font-family:'Marcellus',serif;}
+
+  footer{
+    text-align:center;
+    padding:40px 6vw;
+    border-top:1px solid rgba(122,47,71,0.14);
+    font-size:0.85rem;
+    letter-spacing:0.06em;
+    color:var(--plum);
+    opacity:0.85;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important;transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  
+  <div class="nav-links">
+    <a href="#story">Story</a>
+    <a href="#offerings">Offerings</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#sustainability">Sustainability</a>
+    <a href="#promise">Promise</a>
+    <a href="#serve">Who We Serve</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="logo">BELOVA</div>
+  <div class="ribbon-wrap">
+    <svg width="60" height="90" viewBox="0 0 60 90" fill="none">
+      <path d="M30 0 V60" stroke="#C7962E" stroke-width="1.5"/>
+      <path d="M30 60 C18 60 8 68 8 78 C8 84 14 88 22 84 C28 81 30 74 30 60 Z" stroke="#C7962E" stroke-width="1.5" fill="rgba(199,150,46,0.08)"/>
+      <path d="M30 60 C42 60 52 68 52 78 C52 84 46 88 38 84 C32 81 30 74 30 60 Z" stroke="#C7962E" stroke-width="1.5" fill="rgba(199,150,46,0.08)"/>
+      <circle cx="30" cy="60" r="4" fill="#C7962E"/>
+    </svg>
+  </div>
+  <span class="eyebrow">Boutique Gifting House · Delhi</span>
+  <h1>Curated with heart.<br><em>Delivered with warmth.</em></h1>
+  <p class="tagline">Hampers, keepsakes and corporate gifting — each one tied together with intention.</p>
+  <div class="cta-row">
+    <a href="#offerings" class="btn primary">Explore Offerings</a>
+    <a href="#contact" class="btn ghost">Get in Touch</a>
+  </div>
+</section>
+
+<div class="seal-divider">
+  <div class="line"></div>
+  <span class="mark">est. for the art of giving</span>
+  <div class="line"></div>
+</div>
+
+<section class="story" id="story">
+  <div>
+    <span class="label">Our Story</span>
+    <h2>Two women, one new beginning.</h2>
+    <p>Belova was founded by Gauri and Preeti — a homemaker and a teacher who, at the age of fifty, decided it was time to build something entirely their own. Alongside the lives they had already built, they turned their instinct for warmth and thoughtfulness into a business, choosing to start rather than settle into the idea that it was "too late."</p>
+    <p style="margin-top:18px;">What began as a shared idea between two friends soon became Belova — a gifting brand built on the belief that a gift chosen with care can carry more meaning than anything money alone can buy.</p>
+  </div>
+  <div class="story-visual">
+    <img src="Gemini_Generated_Image_lo4qdvlo4qdvlo4q.png">
+</div>
+</section>
+
+<section id="offerings">
+  <div class="offer-head">
+    <span class="label">What We Offer</span>
+    <h2>Four ways to say it beautifully</h2>
+  </div>
+  <div class="offer-grid">
+    <div class="offer-card">
+      <span class="num">I</span>
+      <h3>Curated Hampers</h3>
+      <p>Festive, celebratory and everyday indulgence hampers, thoughtfully assembled for every occasion.</p>
+    </div>
+    <div class="offer-card">
+      <span class="num">II</span>
+      <h3>Corporate Gifting</h3>
+      <p>Client appreciation, employee milestones and festive corporate hampers — built for bulk, without losing warmth.</p>
+    </div>
+    <div class="offer-card">
+      <span class="num">III</span>
+      <h3>Personalized Gifts</h3>
+      <p>Customized to the occasion, the brand, or the person — because thoughtful should always feel specific.</p>
+    </div>
+    <div class="offer-card">
+      <span class="num">IV</span>
+      <h3>Premium Packaging</h3>
+      <p>Elegant, gift-ready presentation that makes the unboxing moment as special as what's inside.</p>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="offer-head">
+    <span class="label">Our Hampers</span>
+    <h2>A glimpse of what we curate</h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item"><img src="download.jpg" alt="Belova gift hamper with candle, tea, honey and biscotti"></div>
+    <div class="gallery-item"><img src="download (1).jpg" alt="Belova gift hamper with diffuser, candle and chocolates"></div>
+    <div class="gallery-item"><img src="download (2).jpg" alt="Belova gift hamper with flask, popcorn and candle"></div>
+    <div class="gallery-item"><img src="download (3).jpg" alt="Belova gift hamper with roses, candle and hand wash"></div>
+  </div>
+</section>
+
+<section id="sustainability" style="padding-top:0;">
+  <div class="serve">
+    <div class="serve-card">
+      <span class="label">Sustainable Gifting</span>
+      <h3>Beautiful, and mindful</h3>
+      <p>We believe gifting doesn't have to cost the earth. Belova is committed to sustainable practices — from thoughtfully sourced products to packaging that's kinder to the planet, without ever compromising on elegance.</p>
+    </div>
+    <div class="serve-card">
+      <span class="label">Working with NGOs</span>
+      <h3>Giving that gives back</h3>
+      <p>We partner with NGOs to bring their work into our hampers, helping promote artisans and causes that deserve a wider audience. Every Belova gift is a small way of extending that circle of giving further.</p>
+    </div>
+  </div>
+</section>
+
+<div class="promise" id="promise">
+  <div class="promise-inner">
+    <span class="label">Our Promise</span>
+    <h2>What every Belova box carries</h2>
+    <div class="promise-list">
+      <div class="promise-item">
+        <span class="word">Quality</span>
+        <p>Only the finest products earn a place inside a Belova hamper.</p>
+      </div>
+      <div class="promise-item">
+        <span class="word">Elegance</span>
+        <p>Thoughtful design in every box, ribbon and handwritten note.</p>
+      </div>
+      <div class="promise-item">
+        <span class="word">Warmth</span>
+        <p>Customization that makes each gift feel truly one-of-a-kind.</p>
+      </div>
+      <div class="promise-item">
+        <span class="word">Reliability</span>
+        <p>Timely delivery, especially where bulk and corporate orders matter most.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="serve" style="padding-top:100px;">
+  <div class="offer-head">
+    <span class="label">Who We Serve</span>
+    <h2>For people, and for the businesses they build</h2>
+  </div>
+  <div class="serve">
+    <div class="serve-card">
+      <span class="label">Individuals</span>
+      <h3>For your people</h3>
+      <p>Birthdays, anniversaries, festivals and life's smaller, quieter moments — Belova helps you show up for the people you love, beautifully.</p>
+    </div>
+    <div class="serve-card">
+      <span class="label">Corporates</span>
+      <h3>For your relationships</h3>
+      <p>Strengthen bonds with clients, partners and employees through premium, branded gifting that reflects well on you.</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <span class="label">Get in Touch</span>
+  <h2>Let's curate something beautiful</h2>
+  <p class="sub">Reach out for hampers, corporate orders, or a custom gifting idea you have in mind.</p>
+  <div class="contact-grid">
+    <div class="contact-item">
+      <span class="k">Phone</span>
+      <span class="v">+91 98108 37099<br>+91 97174 26564</span>
+    </div>
+    <div class="contact-item">
+      <span class="k">Email</span>
+      <span class="v"><a href="mailto:belovagifting@gmail.com">
+      belovagifting@gmail.com
+    </a>
+    </span>
+    </div>
+    <div class="contact-item">
+      <span class="k">Instagram</span>
+      <span class="v">[Add Instagram handle]</span>
+    </div>
+    <div class="contact-item">
+      <span class="k">Location</span>
+      <span class="v">New Delhi, India</span>
+    </div>
+  </div>
+  <a href="#" class="btn primary">Send an Enquiry</a>
+</section>
+
+<footer>
+  BELOVA — Curated with Heart. Delivered with Warmth. &nbsp;·&nbsp; © 2026
+</footer>
+
+</body>
+</html>
